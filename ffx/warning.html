@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta
+  http-equiv="Content-Security-Policy"
+  content="script-src 'self' 'unsafe-inline'; object-src 'self'"/>
+    <title>Inactive tab warning</title>
+    <style>
+      body {
+        background-color: #f5f5f5;
+        font-family: sans-serif;
+        text-align: center;
+      }
+      h1 {
+        color: #333;
+      }
+      p {
+        color: #777;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="warning.png" alt="Warning">
+    <h1>Inactive tab warning</h1>
+    <p>This tab has been inactive for 90 days and will be closed in 2 days.</p>
+    <p>Tab ID: <span id="id"></span></p>
+    <p>Tab URL: <span id="url"></span></p>
+  </body>
+  <script>
+    // Get the tab ID and URL from the query string.
+    const params = new URLSearchParams(location.search);
+    const id = decodeURIComponent(params.get("id"));
+    const url = decodeURIComponent(params.get("url"));
+
+    // Update the page with the tab ID and URL.
+    document.getElementById("id").textContent = id;
+    document.getElementById("url").textContent = url;
+  </script>
+</html>
