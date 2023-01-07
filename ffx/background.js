@@ -5,7 +5,7 @@ const MAX_INACTIVE_TIME = 90 * DAYS;
 
 // Set a warning 2 days before closing the tab
 //const START_WARNING_TIME 87 * DAYS;
-const START_WARNING_TIME = 20 * DAYS;
+const START_WARNING_TIME = 76 * DAYS;
 
 // Check the tabs every hour.
 const CHECK_INTERVAL = 60 * 60 * 1000;
@@ -47,7 +47,7 @@ function closeInactiveTab(tab) {
 // Closes all inactive tabs in the current window.
 function closeInactiveTabs() {
   //browser.tabs.query({ currentWindow: true }).then((tabs) => {
-  console.log("Inactive Tabs extension starting up")
+  //console.log("Inactive Tabs extension starting up")
   browser.tabs.query({}).then((tabs) => {
     tabs.forEach(closeInactiveTab);
   });
