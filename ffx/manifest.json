@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "close-inactive-tabs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This extension closes tabs that have been inactive for more than 90 days.",
   "content_security_policy": "script-src 'self'; object-src 'self'",
   "icons":{
