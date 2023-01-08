@@ -3,17 +3,12 @@
   "name": "close-inactive-tabs",
   "version": "1.0.1",
   "description": "This extension closes tabs that have been inactive for more than 90 days.",
-  "content_security_policy": "script-src 'self' 'unsafe-inline'; object-src 'self'",
+  "content_security_policy": "script-src 'self'; object-src 'self'",
   "icons":{
   	"48": "icon.jpg"
   },
   "background": {
     "scripts": ["background.js"]
   },
-  "permissions": ["tabs", "windows", "notifications"],
-  "applications": {
-    "gecko": {
-      "id": "close-inactive-tabs@example.com"
-    }
-  }
+  "permissions": ["tabs", "notifications"]
 }

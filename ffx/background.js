@@ -5,7 +5,7 @@ const MAX_INACTIVE_TIME = 90 * DAYS;
 
 // Set a warning 2 days before closing the tab
 //const START_WARNING_TIME 87 * DAYS;
-const START_WARNING_TIME = 76 * DAYS;
+const START_WARNING_TIME = 80 * DAYS;
 
 // Check the tabs every hour.
 const CHECK_INTERVAL = 60 * 60 * 1000;
@@ -25,14 +25,14 @@ function closeInactiveTab(tab) {
   }
   if (inactiveTime > START_WARNING_TIME) {
     message = `The ${tab.title} tab (at ${tab.url}) has been inactive for ${Math.round(inactiveTime / DAYS)} days and will be closed in 2 days.`;
-	  console.log(message);
+	console.log(message);
     browser.notifications.create({
       "type": "basic",
       "iconUrl": browser.extension.getURL("warning.png"),
       "title": "Inactive tab warning",
       "message": message
     });
-    if (inactiveTime - START_WARNING_TIME < 2 * 60 * 60 * 1000) {
+    if (true || inactiveTime - START_WARNING_TIME < 2 * 60 * 60 * 1000) {
       url = browser.extension.getURL("warning.html") + `?id=${encodeURIComponent(tab.title)}&url=${encodeURIComponent(tab.url)}`;
       browser.windows.create({
         "url": url,
