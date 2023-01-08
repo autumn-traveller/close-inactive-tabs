@@ -1,3 +1,5 @@
+const debug = false
+
 const DAYS = 24 * 60 * 60 * 1000;
 
 // Set the maximum inactive time to 90 days in milliseconds.
@@ -18,7 +20,7 @@ function closeInactiveTab(tab) {
     browser.tabs.remove(tab.id);
     browser.notifications.create({
       "type": "basic",
-      "iconUrl": browser.extension.getURL("warning.png"),
+      "iconUrl": browser.runtime.getURL("warning.png"),
       "title": "Inactive tab warning",
       "message": `Tab ${tab.title} was removed (${tab.url}) due to being inactive for 90 days`
     });
@@ -28,12 +30,12 @@ function closeInactiveTab(tab) {
 	console.log(message);
     browser.notifications.create({
       "type": "basic",
-      "iconUrl": browser.extension.getURL("warning.png"),
+      "iconUrl": browser.runtime.getURL("warning.png"),
       "title": "Inactive tab warning",
       "message": message
     });
-    if (true || inactiveTime - START_WARNING_TIME < 2 * 60 * 60 * 1000) {
-      url = browser.extension.getURL("warning.html") + `?id=${encodeURIComponent(tab.title)}&url=${encodeURIComponent(tab.url)}`;
+    if (debug || inactiveTime - START_WARNING_TIME < 2 * 60 * 60 * 1000) {
+      url = browser.runtime.getURL("warning.html") + `?id=${encodeURIComponent(tab.title)}&url=${encodeURIComponent(tab.url)}`;
       browser.windows.create({
         "url": url,
           "type": "popup",
@@ -52,6 +54,9 @@ function closeInactiveTabs() {
     tabs.forEach(closeInactiveTab);
   });
 }
+
+// create the toolbar button
+//browser.browserAction.onClicked.addListener(browserActionCallback);
 
 // Run the function initially and then every CHECK_INTERVAL milliseconds.
 closeInactiveTabs();
